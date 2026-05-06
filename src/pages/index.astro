@@ -1,0 +1,160 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const research = (await getCollection('research')).sort(
+  (a, b) => b.data.year - a.data.year || a.data.order - b.data.order,
+);
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const featuredPapers = research.filter((p) => p.data.featured).slice(0, 3);
+const featuredProjects = projects.filter((p) => p.data.featured).slice(0, 3);
+const selectedPapers = featuredPapers.length ? featuredPapers : research.slice(0, 3);
+const selectedProjects = featuredProjects.length ? featuredProjects : projects.slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="welcome">
+    <p class="eyebrow">Welcome</p>
+    <h1>Hi, I&rsquo;m Suman.</h1>
+    <p class="lede">
+      This is a quiet corner of the web for my work in statistics and machine learning.
+      Here you&rsquo;ll find <a href="/research" class="link">papers I&rsquo;ve written</a> and
+      <a href="/projects" class="link">things I&rsquo;ve built</a>.
+      Edit this paragraph in <code>src/pages/index.astro</code>.
+    </p>
+  </section>
+
+  <section class="two-col">
+    <div class="col">
+      <div class="col-head">
+        <p class="eyebrow">Selected Research</p>
+        <a href="/research" class="see-all">See all &rarr;</a>
+      </div>
+      <ul class="mini-list">
+        {selectedPapers.map((p) => (
+          <li class="mini-item">
+            <a href="/research" class="mini-link">
+              <span class="mini-title">{p.data.title}</span>
+              <span class="mini-meta">{p.data.venue} &middot; {p.data.year}</span>
+            </a>
+          </li>
+        ))}
+        {selectedPapers.length === 0 && <li class="mini-item empty">No papers yet — add one in <code>src/content/research/</code>.</li>}
+      </ul>
+    </div>
+
+    <div class="col">
+      <div class="col-head">
+        <p class="eyebrow">Selected Projects</p>
+        <a href="/projects" class="see-all">See all &rarr;</a>
+      </div>
+      <ul class="mini-list">
+        {selectedProjects.map((p) => (
+          <li class="mini-item">
+            <a href="/projects" class="mini-link">
+              <span class="mini-title">{p.data.title}</span>
+              <span class="mini-meta">{p.data.period}</span>
+            </a>
+          </li>
+        ))}
+        {selectedProjects.length === 0 && <li class="mini-item empty">No projects yet — add one in <code>src/content/projects/</code>.</li>}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .welcome {
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+  }
+  .welcome h1 {
+    margin: var(--space-2) 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 450;
+    letter-spacing: -0.015em;
+  }
+  .lede {
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 60ch;
+    color: var(--color-text-soft);
+  }
+  .lede code {
+    background: var(--color-bg-soft);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: var(--color-tag-text);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .col-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .see-all {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: color var(--transition);
+  }
+  .see-all:hover { color: var(--color-accent-hover); }
+
+  .mini-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .mini-item.empty {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    padding: var(--space-3) 0;
+  }
+  .mini-item.empty code {
+    background: var(--color-bg-soft);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--color-tag-text);
+  }
+  .mini-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 0;
+    border-bottom: 1px dashed transparent;
+    transition: border-color var(--transition);
+  }
+  .mini-link:hover { border-bottom-color: var(--color-border); }
+  .mini-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--color-text);
+  }
+  .mini-meta {
+    font-size: 0.76rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 720px) {
+    .two-col { grid-template-columns: 1fr; gap: var(--space-5); }
+  }
+</style>

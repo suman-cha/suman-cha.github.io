@@ -1,0 +1,124 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const { pathname } = Astro.url;
+const isActive = (path: string) => {
+  if (path === '/') return pathname === '/' || pathname === '';
+  return pathname.startsWith(path);
+};
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/research', label: 'Research' },
+  { href: '/projects', label: 'Projects' },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="Home">
+      <span class="brand-mark">SC</span>
+    </a>
+
+    <div class="header-right">
+      <nav class="nav" aria-label="Primary">
+        {links.map(({ href, label }) => (
+          <a href={href} class={`nav-link ${isActive(href) ? 'is-active' : ''}`}>{label}</a>
+        ))}
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in oklab, var(--color-bg) 88%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text);
+  }
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    background: var(--color-bg-soft);
+    font-family: var(--font-sans);
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .brand:hover .brand-mark {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+  }
+  .nav-link {
+    position: relative;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-soft);
+    transition: color var(--transition), background-color var(--transition);
+  }
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+  .nav-link.is-active {
+    color: var(--color-bg);
+    background: var(--color-text);
+  }
+  :global([data-theme="dark"]) .nav-link.is-active {
+    color: var(--color-bg);
+    background: var(--color-text);
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { padding: 0 var(--space-4); gap: var(--space-3); }
+    .nav { gap: 0; padding: 3px; }
+    .nav-link { padding: 5px 10px; font-size: 0.85rem; }
+  }
+</style>

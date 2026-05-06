@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container-wide footer-inner">
+    <p class="copyright">&copy; {year} Suman Cha. Built with Astro.</p>
+    <p class="meta">Last updated <time>{new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-10);
+    padding: var(--space-6) 0;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+  }
+  .copyright, .meta { margin: 0; }
+</style>

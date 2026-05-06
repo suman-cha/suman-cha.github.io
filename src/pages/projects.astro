@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title),
+);
+---
+
+<BaseLayout title="Projects" description="Hand-picked engineering and research projects.">
+  <section class="projects-section">
+    <header class="page-head">
+      <p class="eyebrow">Projects</p>
+      <h1>Things I built</h1>
+      <p class="page-lede">A curated set of engineering and research projects — recent first. Click any card to read more (coming soon).</p>
+    </header>
+
+    {projects.length === 0 ? (
+      <p class="empty-state">No projects yet. Add a <code>.md</code> file under <code>src/content/projects/</code> with frontmatter (title, tagline, period).</p>
+    ) : (
+      <div class="grid">
+        {projects.map((p) => (
+          <ProjectCard
+            title={p.data.title}
+            tagline={p.data.tagline}
+            period={p.data.period}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .page-head h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    margin: var(--space-2) 0 var(--space-3);
+    font-weight: 450;
+    letter-spacing: -0.015em;
+  }
+  .page-lede {
+    color: var(--color-text-soft);
+    max-width: 60ch;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .empty-state {
+    padding: var(--space-6);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-text-muted);
+    text-align: center;
+    font-size: 0.92rem;
+  }
+  .empty-state code {
+    background: var(--color-bg-soft);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--color-tag-text);
+  }
+</style>
