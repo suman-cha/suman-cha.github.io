@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { scholarPapers } from '../data/papers';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => a.data.order - b.data.order,
@@ -8,7 +9,7 @@ const projects = (await getCollection('projects')).sort(
 
 const featuredProjects = projects.filter((p) => p.data.featured).slice(0, 3);
 const selectedProjects = featuredProjects.length ? featuredProjects : projects.slice(0, 3);
-const scholarHref = 'https://scholar.google.co.kr/citations?user=U9j8rScAAAAJ&hl=ko';
+const selectedPapers = scholarPapers.slice(0, 2);
 ---
 
 <BaseLayout>
@@ -17,8 +18,7 @@ const scholarHref = 'https://scholar.google.co.kr/citations?user=U9j8rScAAAAJ&hl
     <h1>Hi, I&rsquo;m Suman.</h1>
     <p class="lede">
       This is a quiet corner of the web for my work in statistics and machine learning.
-      Here you&rsquo;ll find <a href={scholarHref} class="link" target="_blank" rel="noopener noreferrer">my Google Scholar profile</a> and
-      <a href="/projects" class="link">things I&rsquo;ve built</a>.
+      Here you&rsquo;ll find public papers, preprints, and <a href="/projects" class="link">things I&rsquo;ve built</a>.
     </p>
   </section>
 
@@ -29,16 +29,26 @@ const scholarHref = 'https://scholar.google.co.kr/citations?user=U9j8rScAAAAJ&hl
         <a href="/research" class="see-all">See all &rarr;</a>
       </div>
       <ul class="mini-list">
-        <li class="mini-item">
-          <a href={scholarHref} class="mini-link" target="_blank" rel="noopener noreferrer">
-            <span class="mini-title">Google Scholar profile</span>
-            <span class="mini-meta">Canonical publication list</span>
-          </a>
-        </li>
+        {selectedPapers.map((paper) => (
+          <li class="mini-item">
+            <a href={paper.arxivHref} class="mini-link" target="_blank" rel="noopener noreferrer">
+              <span class="mini-title">{paper.title}</span>
+              <span class="mini-meta">{paper.year} · arXiv:{paper.arxivId}</span>
+            </a>
+          </li>
+        ))}
+        {selectedPapers.length === 0 && (
+          <li class="mini-item">
+            <a href="/research" class="mini-link">
+              <span class="mini-title">Research</span>
+              <span class="mini-meta">Papers and preprints</span>
+            </a>
+          </li>
+        )}
         <li class="mini-item">
           <a href="/research" class="mini-link">
-            <span class="mini-title">Uploaded paper files</span>
-            <span class="mini-meta">PDF · HTML · MD from public/uploads/papers</span>
+            <span class="mini-title">Full research list</span>
+            <span class="mini-meta">Public paper metadata</span>
           </a>
         </li>
       </ul>
@@ -58,7 +68,7 @@ const scholarHref = 'https://scholar.google.co.kr/citations?user=U9j8rScAAAAJ&hl
             </a>
           </li>
         ))}
-        {selectedProjects.length === 0 && <li class="mini-item empty">No projects yet — add one in <code>src/content/projects/</code>.</li>}
+        {selectedProjects.length === 0 && <li class="mini-item empty">No public projects listed yet.</li>}
       </ul>
     </div>
   </section>
