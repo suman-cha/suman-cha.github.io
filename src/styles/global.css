@@ -65,7 +65,10 @@
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  overflow-x: clip;
+}
 img, picture, svg, video { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; padding: 0; }
 a { color: inherit; text-decoration: none; }
@@ -95,6 +98,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
   line-height: 1.15;
   color: var(--color-text);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 h1 { font-size: clamp(2rem, 4vw, 2.875rem); font-weight: 450; }

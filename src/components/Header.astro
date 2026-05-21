@@ -79,6 +79,9 @@ const links = [
     border-color: var(--color-accent);
     color: var(--color-accent);
   }
+  .brand:active .brand-mark {
+    background: var(--color-accent-soft);
+  }
 
   .header-right {
     display: flex;
@@ -102,10 +105,15 @@ const links = [
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--color-text-soft);
+    white-space: nowrap;
     transition: color var(--transition), background-color var(--transition);
   }
   .nav-link:hover {
     color: var(--color-text);
+  }
+  .nav-link:active {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
   }
   .nav-link.is-active {
     color: var(--color-bg);
@@ -120,5 +128,32 @@ const links = [
     .header-inner { padding: 0 var(--space-4); gap: var(--space-3); }
     .nav { gap: 0; padding: 3px; }
     .nav-link { padding: 5px 10px; font-size: 0.85rem; }
+  }
+
+  @media (max-width: 22rem) {
+    .header-inner {
+      padding: 0 10px;
+      gap: 6px;
+    }
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+    }
+    .header-right {
+      gap: 6px;
+    }
+    .nav {
+      padding: 2px;
+    }
+    .nav-link {
+      padding: 4px 7px;
+      font-size: 0.78rem;
+    }
+    :global(.theme-toggle) {
+      width: 32px;
+      height: 32px;
+    }
   }
 </style>

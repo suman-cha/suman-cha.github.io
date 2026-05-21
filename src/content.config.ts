@@ -23,6 +23,16 @@ const projects = defineCollection({
     title: z.string(),
     tagline: z.string(),
     period: z.string(),
+    status: z.string().optional(),
+    topics: z.array(z.string()).default([]),
+    links: z
+      .array(
+        z.object({
+          label: z.string(),
+          href: z.string(),
+        }),
+      )
+      .default([]),
     featured: z.boolean().default(false),
     order: z.number().default(0),
   }),
