@@ -9,7 +9,7 @@ import { scholarPapers } from '../data/papers';
       <p class="eyebrow">Research</p>
       <h1>Papers &amp; preprints.</h1>
       <p class="page-lede">
-        A public publication list drawn from my Google Scholar profile, with arXiv records linked directly where available.
+        A publication list grounded in my Google Scholar profile, with current submission status and direct links where available.
       </p>
     </header>
 
@@ -18,12 +18,20 @@ import { scholarPapers } from '../data/papers';
         <article class="paper-row">
           <div class="paper-year">{paper.year}</div>
           <div class="paper-body">
-            <p class="paper-venue">{paper.venue}</p>
+            <div class="paper-meta">
+              <p class="paper-venue">{paper.venue}</p>
+              {paper.status && <span class="paper-status">{paper.status}</span>}
+              {paper.distinction && <span class="paper-distinction">{paper.distinction}</span>}
+            </div>
             <h2>{paper.title}</h2>
             <p class="paper-authors">{paper.authors}</p>
-            <div class="paper-links">
-              <a href={paper.arxivHref} target="_blank" rel="noopener noreferrer">arXiv:{paper.arxivId}</a>
-            </div>
+            {paper.links && paper.links.length > 0 && (
+              <div class="paper-links">
+                {paper.links.map((link) => (
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+                ))}
+              </div>
+            )}
           </div>
         </article>
       ))}
@@ -87,9 +95,41 @@ import { scholarPapers } from '../data/papers';
     min-width: 0;
   }
 
+  .paper-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+
   .paper-venue,
   .paper-authors {
     margin: 0;
+  }
+
+  .paper-status,
+  .paper-distinction {
+    display: inline-flex;
+    align-items: center;
+    min-height: 23px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1;
+  }
+
+  .paper-status {
+    border: 1px solid var(--color-border);
+    color: var(--color-text-soft);
+    background: var(--color-bg-soft);
+  }
+
+  .paper-distinction {
+    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+    color: var(--color-accent);
+    background: var(--color-accent-soft);
+    font-weight: 600;
   }
 
   .paper-body h2 {
