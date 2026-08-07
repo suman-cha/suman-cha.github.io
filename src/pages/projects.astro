@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectIndex from '../components/ProjectIndex.astro';
+import { publicProjects } from '../data/projects';
+---
+
+<BaseLayout title="Projects" description="Four public research software projects by Suman Cha.">
+  <section class="projects-page" aria-labelledby="projects-title">
+    <header class="page-head">
+      <h1 id="projects-title">Projects</h1>
+      <p>
+        Reproduction code and research software for tabular learning and statistical testing.
+      </p>
+    </header>
+
+    <ProjectIndex projects={publicProjects} />
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hallmark · macrostructure: Index-First · page: four-project public-code ledger */
+  .projects-page {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .page-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+    padding-bottom: var(--space-xl);
+    border-bottom: var(--rule-hair) solid var(--color-border);
+  }
+
+  .page-head p {
+    max-width: 62ch;
+    font-size: var(--text-md);
+    line-height: var(--leading-body);
+  }
+</style>

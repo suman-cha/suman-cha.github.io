@@ -1,186 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { scholarPapers } from '../data/papers';
+import ResearchIndex from '../components/ResearchIndex.astro';
+import { researchPapers } from '../data/papers';
 ---
 
-<BaseLayout title="Research" description="Papers and preprints by Suman Cha.">
-  <section class="research">
+<BaseLayout title="Research" description="Five papers and preprints by Suman Cha, with full author lists and public links.">
+  <section class="research-page" aria-labelledby="research-title">
     <header class="page-head">
-      <p class="eyebrow">Research</p>
-      <h1>Papers &amp; preprints.</h1>
-      <p class="page-lede">
-        A publication list grounded in my Google Scholar profile, with current submission status and direct links where available.
+      <h1 id="research-title">Research</h1>
+      <p>
+        Five papers spanning statistical testing, imbalanced classification,
+        mixed-type tabular generation, and real-time prediction.
       </p>
     </header>
 
-    <div class="paper-ledger">
-      {scholarPapers.map((paper) => (
-        <article class="paper-row">
-          <div class="paper-year">{paper.year}</div>
-          <div class="paper-body">
-            <div class="paper-meta">
-              <p class="paper-venue">{paper.venue}</p>
-              {paper.status && <span class="paper-status">{paper.status}</span>}
-              {paper.distinction && <span class="paper-distinction">{paper.distinction}</span>}
-            </div>
-            <h2>{paper.title}</h2>
-            <p class="paper-authors">{paper.authors}</p>
-            {paper.links && paper.links.length > 0 && (
-              <div class="paper-links">
-                {paper.links.map((link) => (
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
-                ))}
-              </div>
-            )}
-          </div>
-        </article>
-      ))}
-    </div>
+    <ResearchIndex papers={researchPapers} />
   </section>
 </BaseLayout>
 
 <style>
-  /* Hallmark · macrostructure: Editorial Paper Ledger · theme: existing academic-minimal
-   * Hallmark · pre-emit critique: P5 H4 E4 S5 R5 V4
-   * source policy: public Scholar/arXiv metadata only
-   */
-
-  .research {
+  /* Hallmark · macrostructure: Index-First · page: five-paper research ledger */
+  .research-page {
     display: grid;
-    gap: var(--space-8);
+    gap: var(--space-2xl);
   }
 
   .page-head {
-    padding-bottom: var(--space-5);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .page-head h1 {
-    max-width: 11ch;
-    font-size: clamp(2rem, 6vw, 4.2rem);
-    margin: var(--space-2) 0 var(--space-3);
-    font-weight: 450;
-    line-height: 1.05;
-  }
-
-  .page-lede {
-    color: var(--color-text-soft);
-    max-width: 68ch;
-    line-height: 1.7;
-  }
-
-  .paper-ledger {
     display: grid;
-    border-top: 1px solid var(--color-border);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+    padding-bottom: var(--space-xl);
+    border-bottom: var(--rule-hair) solid var(--color-border);
   }
 
-  .paper-row {
-    display: grid;
-    grid-template-columns: minmax(4.5rem, 0.16fr) minmax(0, 1fr);
-    gap: var(--space-5);
-    padding: var(--space-5) 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .paper-year,
-  .paper-venue {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--color-text-muted);
-  }
-
-  .paper-body {
-    display: grid;
-    gap: var(--space-2);
-    min-width: 0;
-  }
-
-  .paper-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 10px;
-  }
-
-  .paper-venue,
-  .paper-authors {
-    margin: 0;
-  }
-
-  .paper-status,
-  .paper-distinction {
-    display: inline-flex;
-    align-items: center;
-    min-height: 23px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    line-height: 1;
-  }
-
-  .paper-status {
-    border: 1px solid var(--color-border);
-    color: var(--color-text-soft);
-    background: var(--color-bg-soft);
-  }
-
-  .paper-distinction {
-    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
-    color: var(--color-accent);
-    background: var(--color-accent-soft);
-    font-weight: 600;
-  }
-
-  .paper-body h2 {
-    margin: 0;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 450;
-    line-height: 1.18;
-    overflow-wrap: anywhere;
-  }
-
-  .paper-authors {
-    max-width: 70ch;
-    color: var(--color-text-soft);
-    line-height: 1.55;
-  }
-
-  .paper-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    padding-top: var(--space-1);
-  }
-
-  .paper-links a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 32px;
-    padding: 4px 10px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-soft);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    line-height: 1;
-    transition: border-color var(--transition), color var(--transition), background-color var(--transition);
-  }
-
-  .paper-links a:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-    background: var(--color-bg-soft);
-  }
-
-  .paper-links a:active {
-    background: var(--color-accent-soft);
-  }
-
-  @media (max-width: 34rem) {
-    .paper-row {
-      grid-template-columns: minmax(0, 1fr);
-      gap: var(--space-2);
-    }
+  .page-head p {
+    max-width: 64ch;
+    font-size: var(--text-md);
+    line-height: var(--leading-body);
   }
 </style>

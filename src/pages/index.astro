@@ -1,110 +1,115 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { scholarPapers } from '../data/papers';
-
-const selectedPapers = scholarPapers;
+import ProjectIndex from '../components/ProjectIndex.astro';
+import ResearchIndex from '../components/ResearchIndex.astro';
+import { researchPapers } from '../data/papers';
+import { publicProjects } from '../data/projects';
 ---
 
-<BaseLayout>
-  <section class="welcome">
-    <p class="eyebrow">Welcome</p>
-    <h1>Hi, I&rsquo;m Suman.</h1>
-    <p class="lede">
-      This is a quiet corner of the web for my work in statistics and machine learning.
-      Here you&rsquo;ll find my papers, preprints, and current submissions.
-    </p>
-  </section>
+<BaseLayout description="Research and public code by Suman Cha, an integrated M.S./Ph.D. student at Yonsei University.">
+  <div class="home-index">
+    <section class="introduction" aria-labelledby="home-title">
+      <h1 id="home-title">Statistics, testing, and learning.</h1>
+      <p>
+        Research in statistical inference and testing, imbalanced classification,
+        mixed-type tabular generative modeling, and statistical machine learning.
+      </p>
+    </section>
 
-  <section class="research-preview">
-    <div class="col-head">
-      <p class="eyebrow">Research</p>
-      <a href="/research" class="see-all">View details &rarr;</a>
-    </div>
-    <ul class="mini-list">
-      {selectedPapers.map((paper) => (
-        <li class="mini-item">
-          <a href="/research" class="mini-link">
-            <span class="mini-title">{paper.title}</span>
-            <span class="mini-meta">{paper.year} · {paper.status ?? paper.venue}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+    <section class="index-section" aria-labelledby="research-heading">
+      <header class="section-head">
+        <div>
+          <h2 id="research-heading">Research</h2>
+          <p>Five papers and current submissions.</p>
+        </div>
+        <a href="/research">All research <span aria-hidden="true">→</span></a>
+      </header>
+      <ResearchIndex papers={researchPapers} compact />
+    </section>
+
+    <section class="index-section" aria-labelledby="projects-heading">
+      <header class="section-head">
+        <div>
+          <h2 id="projects-heading">Projects</h2>
+          <p>Four public research codebases.</p>
+        </div>
+        <a href="/projects">All projects <span aria-hidden="true">→</span></a>
+      </header>
+      <ProjectIndex projects={publicProjects} compact />
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  .welcome {
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: var(--space-6);
-  }
-  .welcome h1 {
-    margin: var(--space-2) 0 var(--space-3);
-    font-size: clamp(2rem, 4vw, 2.6rem);
-    font-weight: 450;
-    letter-spacing: -0.015em;
-  }
-  .lede {
-    font-size: 1.02rem;
-    line-height: 1.65;
-    max-width: 60ch;
-    color: var(--color-text-soft);
-  }
-  .lede code {
-    background: var(--color-bg-soft);
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-size: 0.85em;
-    color: var(--color-tag-text);
+  /* Hallmark · macrostructure: Index-First · home: introduction + two complete indexes */
+  .home-index {
+    display: grid;
+    gap: var(--space-3xl);
   }
 
-  .research-preview {
-    max-width: 52rem;
+  .introduction {
+    display: grid;
+    gap: var(--space-md);
+    padding-bottom: var(--space-xl);
+    border-bottom: var(--rule-hair) solid var(--color-border);
   }
 
-  .col-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--space-3);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--color-border);
+  .introduction h1 {
+    max-width: 17ch;
   }
-  .see-all {
-    font-size: 0.78rem;
-    font-weight: 500;
+
+  .introduction p {
+    max-width: 66ch;
+    font-size: var(--text-md);
+    line-height: var(--leading-body);
+  }
+
+  .index-section {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .section-head div {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .section-head p {
+    font-size: var(--text-sm);
+  }
+
+  .section-head a {
+    justify-self: start;
     color: var(--color-accent);
-    transition: color var(--transition);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-strong);
+    text-underline-offset: var(--rule-underline-offset);
+    white-space: nowrap;
   }
-  .see-all:hover { color: var(--color-accent-hover); }
 
-  .mini-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  @media (hover: hover) and (pointer: fine) {
+    .section-head a:hover {
+      color: var(--color-accent-hover);
+      text-decoration-color: currentColor;
+    }
   }
-  .mini-link {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 10px 0;
-    border-bottom: 1px dashed transparent;
-    transition: border-color var(--transition);
-  }
-  .mini-link:hover { border-bottom-color: var(--color-border); }
-  .mini-title {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    line-height: 1.35;
-    color: var(--color-text);
-  }
-  .mini-meta {
-    font-size: 0.76rem;
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
+
+  @media (min-width: 40rem) {
+    .section-head {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+    }
+
+    .section-head a {
+      justify-self: end;
+    }
   }
 </style>

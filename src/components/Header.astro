@@ -2,28 +2,39 @@
 import ThemeToggle from './ThemeToggle.astro';
 
 const { pathname } = Astro.url;
-const isActive = (path: string) => {
-  if (path === '/') return pathname === '/' || pathname === '';
-  return pathname.startsWith(path);
-};
-
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/research', label: 'Research' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/CV.pdf', label: 'CV' },
 ];
+
+const isActive = (href: string) => href !== '/CV.pdf' && pathname.startsWith(href);
 ---
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="/" class="brand" aria-label="Home">
-      <span class="brand-mark">SC</span>
+    <a href="/" class="brand" aria-label="Suman Cha — home">
+      <span class="brand-short" aria-hidden="true">SC</span>
+      <span class="brand-full">Suman Cha</span>
     </a>
 
     <div class="header-right">
-      <nav class="nav" aria-label="Primary">
-        {links.map(({ href, label }) => (
-          <a href={href} class={`nav-link ${isActive(href) ? 'is-active' : ''}`}>{label}</a>
-        ))}
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          {links.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                class:list={['nav-link', { 'is-active': isActive(href) }]}
+                aria-current={isActive(href) ? 'page' : undefined}
+                target={href === '/CV.pdf' ? '_blank' : undefined}
+                rel={href === '/CV.pdf' ? 'noopener' : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
       <ThemeToggle />
     </div>
@@ -31,128 +42,105 @@ const links = [
 </header>
 
 <style>
+  /* Hallmark · nav: N1 Wordmark + destination links · knobs: split, text, sticky */
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 50;
-    background: color-mix(in oklab, var(--color-bg) 88%, transparent);
-    backdrop-filter: saturate(180%) blur(12px);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--color-border);
+    z-index: var(--z-sticky);
+    border-bottom: var(--rule-hair) solid var(--color-border);
+    background: var(--color-bg);
   }
 
   .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-5);
-    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-5);
+    width: 100%;
+    max-width: var(--content-width-wide);
+    height: var(--header-height);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+    gap: var(--space-xs);
   }
 
   .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     color: var(--color-text);
+    font-family: var(--font-wordmark);
+    font-size: var(--text-base);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    line-height: 1;
+    white-space: nowrap;
   }
-  .brand-mark {
-    display: inline-flex;
+
+  .brand-full {
+    display: none;
+  }
+
+  .header-right,
+  .nav-list {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--color-border-strong);
-    border-radius: 8px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--color-text);
-    background: var(--color-bg-soft);
-    font-family: var(--font-sans);
-    transition: border-color var(--transition), color var(--transition);
-  }
-  .brand:hover .brand-mark {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-  }
-  .brand:active .brand-mark {
-    background: var(--color-accent-soft);
   }
 
   .header-right {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
+    gap: var(--space-2xs);
   }
 
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: 4px;
-    border-radius: 999px;
-    background: var(--color-bg-soft);
-    border: 1px solid var(--color-border);
+  .nav-list {
+    gap: var(--space-2xs);
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
+
   .nav-link {
-    position: relative;
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: var(--space-2xs);
+    border-bottom: var(--rule-hair) solid transparent;
     color: var(--color-text-soft);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    line-height: 1;
     white-space: nowrap;
-    transition: color var(--transition), background-color var(--transition);
   }
-  .nav-link:hover {
+
+  .nav-link.is-active {
+    border-bottom-color: var(--color-accent);
     color: var(--color-text);
   }
-  .nav-link:active {
-    background: var(--color-accent-soft);
-    color: var(--color-accent);
-  }
-  .nav-link.is-active {
-    color: var(--color-bg);
-    background: var(--color-text);
-  }
-  :global([data-theme="dark"]) .nav-link.is-active {
-    color: var(--color-bg);
-    background: var(--color-text);
+
+  @media (hover: hover) and (pointer: fine) {
+    .brand:hover,
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
   }
 
-  @media (max-width: 640px) {
-    .header-inner { padding: 0 var(--space-4); gap: var(--space-3); }
-    .nav { gap: 0; padding: 3px; }
-    .nav-link { padding: 5px 10px; font-size: 0.85rem; }
+  @media (min-width: 24rem) {
+    .brand-short {
+      display: none;
+    }
+
+    .brand-full {
+      display: inline;
+    }
   }
 
-  @media (max-width: 22rem) {
-    .header-inner {
-      padding: 0 10px;
-      gap: 6px;
-    }
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: var(--radius-sm);
-      font-size: 0.7rem;
-    }
+  @media (min-width: 40rem) {
     .header-right {
-      gap: 6px;
+      gap: var(--space-xs);
     }
-    .nav {
-      padding: 2px;
+
+    .nav-list {
+      gap: var(--space-sm);
     }
+
     .nav-link {
-      padding: 4px 7px;
-      font-size: 0.78rem;
-    }
-    :global(.theme-toggle) {
-      width: 32px;
-      height: 32px;
+      padding-inline: var(--space-xs);
+      font-size: var(--text-sm);
     }
   }
 </style>

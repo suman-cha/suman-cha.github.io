@@ -1,0 +1,67 @@
+---
+import type { PaperAuthor, PaperAuthorNote } from '../data/papers';
+
+interface Props {
+  authors: PaperAuthor[];
+  notes?: PaperAuthorNote[];
+}
+
+const { authors, notes = [] } = Astro.props;
+---
+
+<div class="author-block">
+  <p class="author-list">
+    {authors.map((author, index) => (
+      <span class="author">
+        {author.isSelf ? <strong>{author.name}</strong> : author.name}
+        {author.markers.map((marker) => <sup>{marker}</sup>)}
+        {index < authors.length - 1 && <span aria-hidden="true">, </span>}
+      </span>
+    ))}
+  </p>
+
+  {notes.length > 0 && (
+    <p class="author-notes">
+      {notes.map((note, index) => (
+        <span>
+          <sup>{note.marker}</sup>{note.text}{index < notes.length - 1 && <span aria-hidden="true"> · </span>}
+        </span>
+      ))}
+    </p>
+  )}
+</div>
+
+<style>
+  /* Hallmark · structured author line: names, markers, notes */
+  .author-block {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .author-list {
+    max-width: 72ch;
+    color: var(--color-text-soft);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+  }
+
+  .author {
+    white-space: normal;
+  }
+
+  sup {
+    position: relative;
+    top: -0.15em;
+    margin-inline-start: var(--space-3xs);
+    color: var(--color-text-muted);
+    font-family: var(--font-label);
+    font-size: 0.68em;
+    line-height: 0;
+  }
+
+  .author-notes {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    line-height: var(--leading-body);
+  }
+</style>

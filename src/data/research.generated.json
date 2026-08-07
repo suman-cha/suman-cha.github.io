@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 1,
+  "sourceDigest": "42ad6b0bfa6912486e632ac4f42e806909b69c400ad0ed0e5c4de6a81865d4b3",
+  "profile": {
+    "name": "Suman Cha",
+    "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
+    "affiliation": "Yonsei University",
+    "bio": "I study statistical inference, hypothesis testing, and machine learning, with current work on conditional two-sample testing, permutation methods, and tabular generative modeling.",
+    "links": [
+      {
+        "label": "oldrain123@yonsei.ac.kr",
+        "href": "mailto:oldrain123@yonsei.ac.kr"
+      },
+      {
+        "label": "Website",
+        "href": "https://suman-cha.github.io"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/suman-cha"
+      },
+      {
+        "label": "Google Scholar",
+        "href": "https://scholar.google.co.kr/citations?user=U9j8rScAAAAJ&hl=en"
+      }
+    ],
+    "advisors": [
+      {
+        "name": "Hyunjoong Kim",
+        "role": "Co-advisor"
+      },
+      {
+        "name": "Ilmun Kim",
+        "role": "Co-advisor"
+      }
+    ]
+  },
+  "researchInterests": [
+    "Statistical inference and hypothesis testing",
+    "Conditional two-sample testing",
+    "Monte Carlo permutation tests",
+    "Tabular generative modeling",
+    "Imbalanced learning"
+  ],
+  "education": [
+    {
+      "degree": "Integrated M.S./Ph.D.",
+      "field": "Statistics and Data Science",
+      "institution": "Yonsei University",
+      "start": "March 2021",
+      "end": "February 2027",
+      "expected": true,
+      "advisors": [
+        "Hyunjoong Kim",
+        "Ilmun Kim"
+      ]
+    },
+    {
+      "degree": "B.S.",
+      "field": "Applied Statistics",
+      "institution": "Yonsei University",
+      "start": "March 2015",
+      "end": "February 2021",
+      "expected": false,
+      "advisors": []
+    }
+  ],
+  "experience": [
+    {
+      "title": "AI Research Intern",
+      "unit": "User Modeling AI",
+      "organization": "KRAFTON",
+      "start": "June 2025",
+      "end": "March 2026",
+      "summary": "Conducted applied machine learning research for user modeling."
+    },
+    {
+      "title": "Researcher",
+      "unit": "Water-Treatment Research",
+      "organization": "Yonsei University",
+      "start": "January 2025",
+      "end": "December 2026",
+      "summary": "Conducted statistical and machine learning research for water-treatment data."
+    },
+    {
+      "title": "Researcher",
+      "unit": "BRL Two-Sample Testing Project",
+      "organization": "Yonsei University",
+      "start": "September 2022",
+      "end": "February 2025",
+      "summary": "Conducted research on conditional two-sample testing."
+    }
+  ],
+  "publications": [
+    {
+      "id": "fuse",
+      "order": 1,
+      "title": "FUSE: Feature-Wise Unified Specialization with Cross-Column Exchange for Mixed-Type Tabular Flow Matching",
+      "year": 2027,
+      "venue": "AAAI Conference on Artificial Intelligence",
+      "status": "Submitted to AAAI 2027",
+      "authors": [
+        {
+          "name": "Suman Cha",
+          "markers": [
+            "*"
+          ],
+          "isSelf": true
+        },
+        {
+          "name": "Seongchan Lee",
+          "markers": [
+            "*"
+          ],
+          "isSelf": false
+        },
+        {
+          "name": "Dohyeon Ko",
+          "markers": [
+            "*"
+          ],
+          "isSelf": false
+        },
+        {
+          "name": "Hyunjoong Kim",
+          "markers": [
+            "†"
+          ],
+          "isSelf": false
+        }
+      ],
+      "authorNotes": [
+        {
+          "marker": "*",
+          "text": "Equal contribution"
+        },
+        {
+          "marker": "†",
+          "text": "Corresponding author"
+        }
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "href": "https://github.com/suman-cha/FUSE"
+        }
+      ]
+    },
+    {
+      "id": "battle-royale-win-probability",
+      "order": 2,
+      "title": "Real-Time Win Probability Prediction in Battle Royale Games via Survival Analysis",
+      "year": 2027,
+      "venue": "KDD 2027 Applied Data Science Track",
+      "status": "Submitted to KDD 2027 Applied Data Science Track",
+      "authors": [
+        {
+          "name": "Jungmin Kim",
+          "markers": [
+            "*"
+          ],
+          "isSelf": false
+        },
+        {
+          "name": "Suman Cha",
+          "markers": [
+            "*"
+          ],
+          "isSelf": true
+        },
+        {
+          "name": "Seunghan Lee",
+          "markers": [
+            "*"
+          ],
+          "isSelf": false
+        },
+        {
+          "name": "Seunghyun Kim",
+          "markers": [],
+          "isSelf": false
+        },
+        {
+          "name": "Junekyu Park",
+          "markers": [],
+          "isSelf": false
+        },
+        {
+          "name": "Jiyoung Lim",
+          "markers": [],
+          "isSelf": false
+        },
+        {
+          "name": "Anna Lee",
+          "markers": [],
+          "isSelf": false
+        },
+        {
+          "name": "Hyuck Lee",
+          "markers": [
+            "†"
+          ],
+          "isSelf": false
+        }
+      ],
+      "authorNotes": [
+        {
+          "marker": "*",
+          "text": "Equal contribution"
+        },
+        {
+          "marker": "†",
+          "text": "Corresponding author"
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "mc-perm-power",
+      "order": 3,
+      "title": "More Permutations Do Not Always Increase Power: Non-monotonicity in Monte Carlo Permutation Tests",
+      "year": 2026,
+      "venue": "Statistical Science",
+      "status": "Submitted to Statistical Science",
+      "authors": [
+        {
+          "name": "Suman Cha",
+          "markers": [
+            "*"
+          ],
+          "isSelf": true
+        },
+        {
+          "name": "Seongchan Lee",
+          "markers": [
+            "*"
+          ],
+          "isSelf": false
+        },
+        {
+          "name": "Antonin Schrab",
+          "markers": [],
+          "isSelf": false
+        },
+        {
+          "name": "Ilmun Kim",
+          "markers": [],
+          "isSelf": false
+        }
+      ],
+      "authorNotes": [
+        {
+          "marker": "*",
+          "text": "Equal contribution"
+        }
+      ],
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2605.03886"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/suman-cha/mc-perm-power"
+        }
+      ]
+    },
+    {
+      "id": "moms",
+      "order": 4,
+      "title": "Learning Majority-to-Minority Transformations with MMD and Triplet Loss for Imbalanced Classification",
+      "year": 2026,
+      "venue": "Information Sciences 123929 (2026)",
+      "status": "Published",
+      "authors": [
+        {
+          "name": "Suman Cha",
+          "markers": [],
+          "isSelf": true
+        },
+        {
+          "name": "Hyunjoong Kim",
+          "markers": [],
+          "isSelf": false
+        }
+      ],
+      "authorNotes": [],
+      "links": [
+        {
+          "label": "Publisher",
+          "href": "https://www.sciencedirect.com/science/article/pii/S0020025526008601"
+        },
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2509.11511"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/suman-cha/moms-imbalanced-learning"
+        }
+      ]
+    },
+    {
+      "id": "cond2st",
+      "order": 5,
+      "title": "General Frameworks for Conditional Two-Sample Testing",
+      "year": 2024,
+      "venue": "Biometrika",
+      "status": "Submitted to Biometrika",
+      "authors": [
+        {
+          "name": "Seongchan Lee",
+          "markers": [
+            "*"
+          ],
+          "isSelf": false
+        },
+        {
+          "name": "Suman Cha",
+          "markers": [
+            "*"
+          ],
+          "isSelf": true
+        },
+        {
+          "name": "Ilmun Kim",
+          "markers": [],
+          "isSelf": false
+        }
+      ],
+      "authorNotes": [
+        {
+          "marker": "*",
+          "text": "Equal contribution"
+        }
+      ],
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2410.16636"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/suman-cha/Cond2ST"
+        }
+      ]
+    }
+  ],
+  "projectGroups": [
+    {
+      "category": "Generative and Imbalanced Learning",
+      "projects": [
+        {
+          "id": "fuse",
+          "name": "FUSE",
+          "summary": "Reproducibility pipeline with SHA-256-verified data reconstruction and command-line workflows for training, reproduction, dependence studies, replay, and evaluation.",
+          "repository": {
+            "label": "GitHub",
+            "href": "https://github.com/suman-cha/FUSE"
+          },
+          "contributions": [
+            "SHA-256-verified data reconstruction for auditable data preparation.",
+            "CLI workflows for training, reproduction, dependence studies, replay, and evaluation.",
+            "Separate pinned training and evaluation environments with offline tests."
+          ],
+          "technologies": [
+            "Python"
+          ],
+          "relatedPublicationId": "fuse"
+        },
+        {
+          "id": "moms",
+          "name": "MOMS",
+          "summary": "Parametric majority-to-minority transformation using MMD for global alignment and triplet loss for local boundary awareness, evaluated on 29 datasets.",
+          "repository": {
+            "label": "GitHub",
+            "href": "https://github.com/suman-cha/moms-imbalanced-learning"
+          },
+          "contributions": [
+            "TransMap learns a parametric majority-to-minority mapping.",
+            "MMD provides global alignment while local triplet loss adds boundary awareness.",
+            "A config-driven benchmark and ablation pipeline covers 29 datasets."
+          ],
+          "technologies": [
+            "Python",
+            "PyTorch"
+          ],
+          "relatedPublicationId": "moms"
+        }
+      ]
+    },
+    {
+      "category": "Statistical Testing",
+      "projects": [
+        {
+          "id": "cond2st",
+          "name": "Cond2ST",
+          "summary": "R package and reproducibility code for two general conditional two-sample testing approaches based on conditional independence tests and density-ratio testing.",
+          "repository": {
+            "label": "GitHub",
+            "href": "https://github.com/suman-cha/Cond2ST"
+          },
+          "contributions": [
+            "Conversion of conditional independence tests into conditional two-sample tests.",
+            "A complementary density-ratio testing approach.",
+            "R package and scripts reproduce simulations and real-data experiments."
+          ],
+          "technologies": [
+            "R"
+          ],
+          "relatedPublicationId": "cond2st"
+        },
+        {
+          "id": "mc-perm-power",
+          "name": "mc-perm-power",
+          "summary": "R, Rcpp, and C++ reproducibility code for the non-monotone unconditional power and integer-threshold sawtooth behavior of standard non-randomized Monte Carlo permutation tests.",
+          "repository": {
+            "label": "GitHub",
+            "href": "https://github.com/suman-cha/mc-perm-power"
+          },
+          "contributions": [
+            "Non-monotone unconditional power follows an integer-threshold sawtooth pattern.",
+            "R, Rcpp, and C++ code reproduces power curves and figures.",
+            "Appendix implementations cover mean difference, MMD, HSIC, and energy statistics."
+          ],
+          "technologies": [
+            "R",
+            "Rcpp",
+            "C++"
+          ],
+          "relatedPublicationId": "mc-perm-power"
+        }
+      ]
+    }
+  ],
+  "talks": [
+    {
+      "id": "jsm-2025-cond2st",
+      "title": "General Frameworks for Conditional Two-Sample Testing",
+      "event": "JSM 2025",
+      "year": 2025,
+      "format": "Oral presentation"
+    },
+    {
+      "id": "kdms-2024-contrastive",
+      "title": "Contrastive Learning for Two-sample Tests",
+      "event": "KDMS 2024",
+      "year": 2024,
+      "format": "Oral presentation"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Best Paper Award",
+      "event": "KDMS 2024",
+      "year": 2024,
+      "relatedTalkId": "kdms-2024-contrastive"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Programming and ML",
+      "items": [
+        "Python",
+        "PyTorch",
+        "R",
+        "C++"
+      ]
+    },
+    {
+      "group": "Data platforms",
+      "items": [
+        "Databricks",
+        "PySpark"
+      ]
+    }
+  ]
+}

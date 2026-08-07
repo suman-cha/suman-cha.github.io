@@ -4,121 +4,96 @@ import SocialLinks from './SocialLinks.astro';
 
 <aside class="sidebar" aria-label="Profile">
   <div class="sidebar-inner">
-    <div class="photo-frame">
-      <div class="photo-placeholder">
-        <span>SC</span>
-      </div>
-      <!-- Replace the placeholder with: <img src="/me.jpg" alt="Profile photo" /> -->
+    <div class="identity">
+      <p class="name">Suman Cha</p>
+      <p class="role">Integrated M.S./Ph.D. Student</p>
+      <p class="affiliation">Statistics and Data Science<br />Yonsei University</p>
     </div>
-
-    <h1 class="name">Suman Cha</h1>
-    <p class="tagline">Statistician &middot; ML Researcher</p>
 
     <p class="bio">
-      I work on theoretical statistics and modern machine learning, with a focus on
-      statistical testing, tabular generative modeling, and data-centric AI.
+      I work on statistical inference and testing, imbalanced classification,
+      mixed-type tabular generative modeling, and statistical machine learning.
     </p>
 
-    <p class="affiliation">
-      Department of Statistics<br/>
-      Yonsei University
+    <p class="advisors">
+      <span>Co-advised by</span>
+      Prof. Hyunjoong Kim<br />
+      Prof. Ilmun Kim
     </p>
 
-    <div class="social-wrap">
-      <SocialLinks layout="vertical" />
-    </div>
+    <SocialLinks layout="vertical" />
   </div>
 </aside>
 
 <style>
+  /* Hallmark · profile: typographic rail · no imagery, cards, or shadow */
   .sidebar {
-    /* The grid in BaseLayout positions us; we just style the inside */
+    padding-bottom: var(--space-xl);
+    border-bottom: var(--rule-hair) solid var(--color-border);
   }
 
   .sidebar-inner {
-    position: sticky;
-    top: calc(60px + var(--space-5));
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 34rem;
   }
 
-  .photo-frame {
-    width: 152px;
-    height: 152px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    background: var(--color-bg-soft);
-    box-shadow: var(--shadow-card);
-    margin-bottom: var(--space-2);
-  }
-  .photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .photo-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-bg-soft), var(--color-tag-bg));
-    color: var(--color-tag-text);
-    font-family: var(--font-serif);
-    font-size: 2.6rem;
-    font-weight: 500;
-    letter-spacing: -0.04em;
+  .identity {
+    display: grid;
+    gap: var(--space-2xs);
   }
 
   .name {
-    font-family: var(--font-serif);
-    font-size: 1.55rem;
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-display);
+    line-height: var(--leading-tight);
   }
 
-  .tagline {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-2);
-    letter-spacing: 0.01em;
+  .role {
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .affiliation,
+  .bio,
+  .advisors {
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
   }
 
   .bio {
-    font-size: 0.88rem;
+    max-width: 32rem;
+  }
+
+  .advisors {
+    padding-top: var(--space-sm);
+    border-top: var(--rule-hair) solid var(--color-border);
     color: var(--color-text-soft);
-    line-height: 1.55;
-    margin: 0;
   }
 
-  .affiliation {
-    font-size: 0.8rem;
+  .advisors span {
+    display: block;
+    margin-bottom: var(--space-2xs);
     color: var(--color-text-muted);
-    line-height: 1.55;
-    margin: 0;
-    padding-top: var(--space-2);
-    border-top: 1px solid var(--color-border);
+    font-family: var(--font-label);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
   }
 
-  .social-wrap {
-    margin-top: var(--space-2);
-    padding-top: var(--space-3);
-    border-top: 1px solid var(--color-border);
-  }
-
-  /* Mobile / tablet: sidebar stacks at the top, no longer sticky */
-  @media (max-width: 880px) {
-    .sidebar-inner {
-      position: static;
-      top: auto;
-      align-items: flex-start;
+  @media (min-width: 56rem) {
+    .sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + var(--space-xl));
+      padding-bottom: 0;
+      border-bottom: 0;
     }
-    .photo-frame { width: 96px; height: 96px; }
-    .photo-placeholder { font-size: 1.6rem; }
-    .name { font-size: 1.35rem; }
+
+    .sidebar-inner {
+      max-width: none;
+    }
   }
 </style>

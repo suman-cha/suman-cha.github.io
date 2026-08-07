@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-08",
+  "framework": {
+    "name": "Astro",
+    "version": "6.2.2"
+  },
+  "fontStack": [
+    "Fraunces",
+    "Inter",
+    "JetBrains Mono"
+  ],
+  "palette": "cool paper, navy ink, blue accent; migrated from hex to named OKLCH tokens",
+  "motion": "motion-cut; no motion library",
+  "spacing": "4-point base",
+  "sources": [
+    "package.json",
+    "src/layouts/BaseLayout.astro",
+    "src/styles/global.css"
+  ]
+}

@@ -1,65 +1,81 @@
+import generatedResearch from './research.generated.json';
+
 export interface PaperLink {
   label: string;
   href: string;
 }
 
-export interface ScholarPaper {
+export interface PaperAuthor {
+  name: string;
+  markers: string[];
+  isSelf: boolean;
+}
+
+export interface PaperAuthorNote {
+  marker: string;
+  text: string;
+}
+
+export interface ResearchPaper {
+  id: string;
   title: string;
-  authors: string;
   year: number;
   venue: string;
   status?: string;
-  distinction?: string;
-  links?: PaperLink[];
+  authors: PaperAuthor[];
+  authorNotes: PaperAuthorNote[];
+  links: PaperLink[];
 }
 
-export const scholarPapers: ScholarPaper[] = [
-  {
-    title: 'FUSE: Feature-Wise Unified Specialization with Cross-Column Exchange for Mixed-Type Tabular Flow Matching',
-    authors: 'Suman Cha et al.',
-    year: 2027,
-    venue: 'AAAI Conference on Artificial Intelligence',
-    status: 'Submitted to AAAI 2027',
-  },
-  {
-    title: 'Real-Time Win Probability Prediction in Battle Royale Games via Survival Analysis',
-    authors: 'Suman Cha et al.',
-    year: 2027,
-    venue: 'ACM SIGKDD Conference on Knowledge Discovery and Data Mining · ADS Track',
-    status: 'Submitted to KDD 2027 ADS Track',
-  },
-  {
-    title: 'More Permutations Do Not Always Increase Power: Non-monotonicity in Monte Carlo Permutation Tests',
-    authors: 'Suman Cha, Seongchan Lee, Antonin Schrab, Ilmun Kim',
-    year: 2026,
-    venue: 'Statistical Science',
-    status: 'Submitted',
-    distinction: 'Q1 journal',
-    links: [
-      { label: 'arXiv:2605.03886', href: 'https://arxiv.org/abs/2605.03886' },
-    ],
-  },
-  {
-    title: 'Learning Majority-to-Minority Transformations with MMD and Triplet Loss for Imbalanced Classification',
-    authors: 'Suman Cha, Hyunjoong Kim',
-    year: 2026,
-    venue: 'Information Sciences · 123929',
-    status: 'Published',
-    distinction: 'Q1 journal',
-    links: [
-      { label: 'Publisher', href: 'https://www.sciencedirect.com/science/article/pii/S0020025526008601' },
-      { label: 'arXiv:2509.11511', href: 'https://arxiv.org/abs/2509.11511' },
-    ],
-  },
-  {
-    title: 'General Frameworks for Conditional Two-Sample Testing',
-    authors: 'Seongchan Lee, Suman Cha, Ilmun Kim',
-    year: 2024,
-    venue: 'Biometrika',
-    status: 'Submitted',
-    distinction: 'Leading statistics journal · Q1',
-    links: [
-      { label: 'arXiv:2410.16636', href: 'https://arxiv.org/abs/2410.16636' },
-    ],
-  },
-];
+interface GeneratedPublication extends ResearchPaper {
+  order: number;
+  status: string;
+}
+
+interface GeneratedResearchData {
+  schemaVersion: number;
+  sourceDigest: string;
+  publications: GeneratedPublication[];
+}
+
+const data: GeneratedResearchData = generatedResearch;
+const expectedIds = [
+  'fuse',
+  'battle-royale-win-probability',
+  'mc-perm-power',
+  'moms',
+  'cond2st',
+] as const;
+
+const publicationsById = new Map(data.publications.map((publication) => [publication.id, publication]));
+if (data.schemaVersion !== 1) {
+  throw new Error(`Unsupported research data schema: ${data.schemaVersion}`);
+}
+
+if (
+  data.publications.length !== expectedIds.length
+  || publicationsById.size !== expectedIds.length
+  || expectedIds.some((id) => !publicationsById.has(id))
+) {
+  throw new Error(
+    `research.generated.json must contain exactly these five publications: ${expectedIds.join(', ')}`,
+  );
+}
+
+export const researchPapers: ResearchPaper[] = data.publications
+  .slice()
+  .sort((left, right) => left.order - right.order)
+  .map(({ order: _order, ...publication }) => ({
+    ...publication,
+    authors: publication.authors.map((author) => ({
+      ...author,
+      markers: [...author.markers],
+    })),
+    authorNotes: publication.authorNotes.map((note) => ({ ...note })),
+    links: publication.links.map((link) => ({ ...link })),
+  }));
+
+export const researchSourceDigest = data.sourceDigest;
+
+// Kept as a compatibility alias for any downstream import not yet migrated.
+export const scholarPapers = researchPapers;
