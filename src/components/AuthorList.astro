@@ -14,7 +14,7 @@ const { authors, notes = [] } = Astro.props;
     {authors.map((author, index) => (
       <span class="author">
         {author.isSelf ? <strong>{author.name}</strong> : author.name}
-        {author.markers.map((marker) => <sup>{marker}</sup>)}
+        {author.markers.map((marker) => <sup class="author-marker">{marker}</sup>)}
         {index < authors.length - 1 && <span aria-hidden="true">, </span>}
       </span>
     ))}
@@ -23,8 +23,8 @@ const { authors, notes = [] } = Astro.props;
   {notes.length > 0 && (
     <p class="author-notes">
       {notes.map((note, index) => (
-        <span>
-          <sup>{note.marker}</sup>{note.text}{index < notes.length - 1 && <span aria-hidden="true"> · </span>}
+        <span class="author-note">
+          <sup class="legend-marker">{note.marker}</sup>{note.text}{index < notes.length - 1 && <span aria-hidden="true"> · </span>}
         </span>
       ))}
     </p>
@@ -49,14 +49,23 @@ const { authors, notes = [] } = Astro.props;
     white-space: normal;
   }
 
-  sup {
+  .author-marker,
+  .legend-marker {
     position: relative;
     top: -0.15em;
-    margin-inline-start: var(--space-3xs);
-    color: var(--color-text-muted);
+    color: var(--color-accent);
     font-family: var(--font-label);
-    font-size: 0.68em;
+    font-size: var(--text-xs);
+    font-weight: 700;
     line-height: 0;
+  }
+
+  .author-marker {
+    margin-inline-start: var(--space-3xs);
+  }
+
+  .legend-marker {
+    margin-inline-end: var(--space-2xs);
   }
 
   .author-notes {

@@ -104,14 +104,18 @@ const number = (index: number) => String(index + 1).padStart(2, '0');
   }
 
   .project-summary {
-    max-width: 68ch;
+    width: 100%;
+    max-width: 75ch;
     font-size: var(--text-base);
     line-height: var(--leading-body);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
 
   .project-contributions {
     display: grid;
-    max-width: 68ch;
+    width: 100%;
+    max-width: 75ch;
     padding: 0;
     gap: var(--space-xs);
     color: var(--color-text-soft);
@@ -123,7 +127,10 @@ const number = (index: number) => String(index + 1).padStart(2, '0');
   .project-contributions li {
     display: grid;
     grid-template-columns: var(--space-sm) minmax(0, 1fr);
+    min-width: 0;
     gap: var(--space-xs);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
 
   .project-contributions li::before {
