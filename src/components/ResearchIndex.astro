@@ -10,6 +10,8 @@ interface Props {
 const { papers, compact = false } = Astro.props;
 const number = (index: number) => String(index + 1).padStart(2, '0');
 const isExternal = (href: string) => href.startsWith('http://') || href.startsWith('https://');
+const publicationLabel = (paper: ResearchPaper) =>
+  paper.status?.startsWith('Submitted to ') ? paper.status : paper.venue;
 ---
 
 <ol class:list={['research-index', { 'is-compact': compact }]}>
@@ -30,10 +32,7 @@ const isExternal = (href: string) => href.startsWith('http://') || href.startsWi
 
       <article class="paper-body">
         <header class="paper-heading">
-          <p class="paper-meta">
-            <span>{paper.venue}</span>
-            {paper.status && <span class="paper-status">{paper.status}</span>}
-          </p>
+          <p class="paper-meta">{publicationLabel(paper)}</p>
           <h2>{paper.title}</h2>
         </header>
 
@@ -105,22 +104,11 @@ const isExternal = (href: string) => href.startsWith('http://') || href.startsWi
   }
 
   .paper-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-xs) var(--space-sm);
     color: var(--color-text-muted);
     font-size: var(--text-sm);
   }
 
-  .paper-status::before {
-    content: "·";
-    margin-inline-end: var(--space-sm);
-    color: var(--color-border-strong);
-  }
-
   .paper-body h2 {
-    max-width: 34ch;
     font-size: clamp(var(--text-md), 3vw, var(--text-lg));
   }
 

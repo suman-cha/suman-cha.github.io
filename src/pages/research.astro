@@ -8,10 +8,6 @@ import { researchPapers } from '../data/papers';
   <section class="research-page" aria-labelledby="research-title">
     <header class="page-head">
       <h1 id="research-title">Research</h1>
-      <p>
-        Five papers spanning statistical testing, imbalanced classification,
-        mixed-type tabular generation, and real-time prediction.
-      </p>
     </header>
 
     <ResearchIndex papers={researchPapers} />
@@ -26,16 +22,7 @@ import { researchPapers } from '../data/papers';
   }
 
   .page-head {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-md);
     padding-bottom: var(--space-xl);
     border-bottom: var(--rule-hair) solid var(--color-border);
-  }
-
-  .page-head p {
-    max-width: 64ch;
-    font-size: var(--text-md);
-    line-height: var(--leading-body);
   }
 </style>

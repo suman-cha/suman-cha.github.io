@@ -20,7 +20,6 @@ import { publicProjects } from '../data/projects';
       <header class="section-head">
         <div>
           <h2 id="research-heading">Research</h2>
-          <p>Five papers and current submissions.</p>
         </div>
         <a href="/research">All research <span aria-hidden="true">→</span></a>
       </header>
@@ -52,10 +51,13 @@ import { publicProjects } from '../data/projects';
     gap: var(--space-md);
     padding-bottom: var(--space-xl);
     border-bottom: var(--rule-hair) solid var(--color-border);
+    container-type: inline-size;
   }
 
   .introduction h1 {
-    max-width: 17ch;
+    max-width: none;
+    font-size: clamp(1rem, 5.75cqi, 3.05rem);
+    white-space: nowrap;
   }
 
   .introduction p {

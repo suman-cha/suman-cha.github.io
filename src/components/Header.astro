@@ -13,10 +13,7 @@ const isActive = (href: string) => href !== '/CV.pdf' && pathname.startsWith(hre
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="/" class="brand" aria-label="Suman Cha — home">
-      <span class="brand-short" aria-hidden="true">SC</span>
-      <span class="brand-full">Suman Cha</span>
-    </a>
+    <a href="/" class="brand" aria-label="Home">Home</a>
 
     <div class="header-right">
       <nav aria-label="Primary">
@@ -73,10 +70,6 @@ const isActive = (href: string) => href !== '/CV.pdf' && pathname.startsWith(hre
     white-space: nowrap;
   }
 
-  .brand-full {
-    display: none;
-  }
-
   .header-right,
   .nav-list {
     display: flex;
@@ -116,16 +109,6 @@ const isActive = (href: string) => href !== '/CV.pdf' && pathname.startsWith(hre
     .brand:hover,
     .nav-link:hover {
       color: var(--color-accent);
-    }
-  }
-
-  @media (min-width: 24rem) {
-    .brand-short {
-      display: none;
-    }
-
-    .brand-full {
-      display: inline;
     }
   }
 
