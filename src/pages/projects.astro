@@ -33,8 +33,14 @@ import { publicProjects } from '../data/projects';
   }
 
   .page-head p {
-    max-width: 62ch;
+    max-width: 75ch;
     font-size: var(--text-md);
     line-height: var(--leading-body);
+  }
+
+  @media (min-width: 66rem) {
+    .page-head p {
+      white-space: nowrap;
+    }
   }
 </style>
