@@ -5,9 +5,8 @@
     "version": "6.2.2"
   },
   "fontStack": [
-    "Fraunces",
-    "Inter",
-    "JetBrains Mono"
+    "Source Sans 3",
+    "System monospace"
   ],
   "palette": "cool paper, navy ink, blue accent; migrated from hex to named OKLCH tokens",
   "motion": "motion-cut; no motion library",

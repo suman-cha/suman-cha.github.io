@@ -1,4 +1,4 @@
-/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 · genre: editorial · macrostructure: Index-First · theme: Almanac · tone: austere · anchor hue: slate blue · contrast: pass (46–50) · nav: N1 · footer: Ft2 · honest/chrome/tokens/icons: pass (56–60) · mobile: pass (36, 59, 61–69) */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 · genre: editorial · macrostructure: Index-First · theme: Almanac · tone: austere · anchor hue: slate blue · typography: Source Sans 3 + system mono · contrast: pass (46–50) · nav: N1 · footer: Ft2 · honest/chrome/tokens/icons: pass (56–60) · mobile: pass (36, 59, 61–69) */
 :root {
   color-scheme: light;
 
@@ -20,13 +20,14 @@
   --color-tag-text: var(--color-text-soft);
   --color-selection: oklch(89% 0.055 250);
 
-  /* Type · retained from the existing academic system */
-  --font-display: "Fraunces", "Times New Roman", ui-serif, serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Type · clean sans system with mono reserved for code and identifiers */
+  --font-primary: "Source Sans 3", system-ui, sans-serif;
+  --font-display: var(--font-primary);
+  --font-body: var(--font-primary);
   --font-label: var(--font-body);
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-wordmark: var(--font-display);
-  --font-serif: var(--font-display);
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --font-wordmark: var(--font-primary);
+  --font-serif: var(--font-primary);
   --font-sans: var(--font-body);
 
   --text-xs: 0.75rem;
