@@ -47,20 +47,6 @@ const expectedIds = [
   'cond2st',
 ] as const;
 
-type PublicationId = (typeof expectedIds)[number];
-
-interface BlogOnlyPublicationOverride {
-  removedAuthorMarkers: readonly string[];
-  removedAuthorNoteMarkers: readonly string[];
-}
-
-const blogOnlyPublicationOverrides = {
-  fuse: {
-    removedAuthorMarkers: ['*'],
-    removedAuthorNoteMarkers: ['*'],
-  },
-} as const satisfies Partial<Record<PublicationId, BlogOnlyPublicationOverride>>;
-
 const publicationsById = new Map(data.publications.map((publication) => [publication.id, publication]));
 if (data.schemaVersion !== 1) {
   throw new Error(`Unsupported research data schema: ${data.schemaVersion}`);
@@ -79,25 +65,15 @@ if (
 export const researchPapers: ResearchPaper[] = data.publications
   .slice()
   .sort((left, right) => left.order - right.order)
-  .map(({ order: _order, ...publication }) => {
-    const override = publication.id === 'fuse' ? blogOnlyPublicationOverrides.fuse : undefined;
-
-    return {
-      ...publication,
-      authors: publication.authors.map((author) => ({
-        ...author,
-        markers: author.markers.filter(
-          (marker) => !override?.removedAuthorMarkers.some((removed) => removed === marker),
-        ),
-      })),
-      authorNotes: publication.authorNotes
-        .filter(
-          (note) => !override?.removedAuthorNoteMarkers.some((removed) => removed === note.marker),
-        )
-        .map((note) => ({ ...note })),
-      links: publication.links.map((link) => ({ ...link })),
-    };
-  });
+  .map(({ order: _order, ...publication }) => ({
+    ...publication,
+    authors: publication.authors.map((author) => ({
+      ...author,
+      markers: [...author.markers],
+    })),
+    authorNotes: publication.authorNotes.map((note) => ({ ...note })),
+    links: publication.links.map((link) => ({ ...link })),
+  }));
 
 export const researchSourceDigest = data.sourceDigest;
 

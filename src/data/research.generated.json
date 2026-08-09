@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "42ad6b0bfa6912486e632ac4f42e806909b69c400ad0ed0e5c4de6a81865d4b3",
+  "sourceDigest": "28c585b888a96cae68dcdd2716592abf0181837ace21800ebc52f9fe29fdd3a8",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -91,6 +91,29 @@
       "summary": "Conducted research on conditional two-sample testing."
     }
   ],
+  "teaching": [
+    {
+      "role": "Teaching Assistant",
+      "course": "Multivariate Analysis",
+      "institution": "Yonsei University",
+      "start": "March 2025",
+      "end": "August 2025"
+    },
+    {
+      "role": "Teaching Assistant",
+      "course": "Mathematical Statistics",
+      "institution": "Yonsei University",
+      "start": "March 2024",
+      "end": "August 2025"
+    },
+    {
+      "role": "Teaching Assistant",
+      "course": "Theory and Applications in Machine Learning",
+      "institution": "Yonsei University",
+      "start": "September 2021",
+      "end": "December 2021"
+    }
+  ],
   "publications": [
     {
       "id": "fuse",
@@ -102,23 +125,17 @@
       "authors": [
         {
           "name": "Suman Cha",
-          "markers": [
-            "*"
-          ],
+          "markers": [],
           "isSelf": true
         },
         {
           "name": "Seongchan Lee",
-          "markers": [
-            "*"
-          ],
+          "markers": [],
           "isSelf": false
         },
         {
           "name": "Dohyeon Ko",
-          "markers": [
-            "*"
-          ],
+          "markers": [],
           "isSelf": false
         },
         {
@@ -130,10 +147,6 @@
         }
       ],
       "authorNotes": [
-        {
-          "marker": "*",
-          "text": "Equal contribution"
-        },
         {
           "marker": "†",
           "text": "Corresponding author"
@@ -455,6 +468,31 @@
       "event": "KDMS 2024",
       "year": 2024,
       "relatedTalkId": "kdms-2024-contrastive"
+    },
+    {
+      "title": "Excellence Award",
+      "event": "Yonsei Data Science Competition - KCB Project",
+      "year": 2022
+    },
+    {
+      "title": "Excellence Award",
+      "event": "Yonsei Data Science Competition - Hyodol Project",
+      "year": 2021
+    },
+    {
+      "title": "Encouragement Award",
+      "event": "Sony Pictures - Movie Audience Prediction",
+      "year": 2019
+    },
+    {
+      "title": "Excellence Award",
+      "event": "Yonsei Data Science Competition - PACKUS",
+      "year": 2019
+    },
+    {
+      "title": "Excellence Award",
+      "event": "Yonsei Data Science Competition - Embrain",
+      "year": 2019
     }
   ],
   "skills": [
