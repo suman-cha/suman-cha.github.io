@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "28c585b888a96cae68dcdd2716592abf0181837ace21800ebc52f9fe29fdd3a8",
+  "sourceDigest": "7fdc7e67dfd46fd9e7a621afb844aa6a7050623523a4737c7b586fd1c0b0b06f",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -134,7 +134,7 @@
           "isSelf": false
         },
         {
-          "name": "Dohyeon Ko",
+          "name": "Dohyun Ko",
           "markers": [],
           "isSelf": false
         },
@@ -153,6 +153,10 @@
         }
       ],
       "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2608.07294"
+        },
         {
           "label": "Code",
           "href": "https://github.com/suman-cha/FUSE"
