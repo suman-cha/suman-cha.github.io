@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "cfe19e1329fab17d2a4598aa9816fe7c31aeabdc75169799ed3f3fb4aa821712",
+  "sourceDigest": "11e27034a6a9d0ba8e4ee9f2ce4df28c052fd2fc99d4d3c8696713b1bcd96369",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -72,7 +72,11 @@
       "organization": "KRAFTON",
       "start": "June 2025",
       "end": "March 2026",
-      "summary": "Developed MMR algorithms for PUBG MMR Renewal and real-time win probability prediction models for PUBG E-sports."
+      "summary": "Developed MMR algorithms for PUBG MMR Renewal and real-time win probability prediction models for PUBG E-sports.",
+      "bullets": [
+        "PUBG MMR Renewal: MMR Algorithm Development",
+        "PUBG E-sports Real-time Win Probability Prediction: Model Development"
+      ]
     },
     {
       "title": "Researcher",
