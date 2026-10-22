@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "11e27034a6a9d0ba8e4ee9f2ce4df28c052fd2fc99d4d3c8696713b1bcd96369",
+  "sourceDigest": "9fc495b5fb4b49b00ed21e9b3f51421aa2645b9337f29ce832ebd78a02469fdd",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -92,7 +92,7 @@
       "organization": "Yonsei University",
       "start": "September 2022",
       "end": "February 2025",
-      "summary": "Conducted research on conditional two-sample testing and led biweekly seminars."
+      "summary": "Conducted research on conditional two-sample testing and participated in biweekly seminars."
     }
   ],
   "teaching": [
