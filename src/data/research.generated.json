@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "902d00603f9767b2860e3a67fb8f8831a5160979901b954ef29a6da98bfcb2b5",
+  "sourceDigest": "36a034ad197b7bae776b970b7dc2a24ea8974c6ff98bddfd5d41aa285db5d514",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -76,11 +76,11 @@
     },
     {
       "title": "Researcher",
-      "unit": "Water-Treatment Research",
+      "unit": "Wastewater Treatment Process Intelligence",
       "organization": "Yonsei University",
       "start": "January 2025",
       "end": "December 2026",
-      "summary": "Conducted statistical and machine learning research for water-treatment data."
+      "summary": "Developed and evaluated time-series forecasting models for wastewater treatment processes."
     },
     {
       "title": "Researcher",
