@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "a738f9004a2c3e8fd50ed183099307fc0ec04931c1eb9b843866b6a8a5f5a15c",
+  "sourceDigest": "cf54ef868df2541f8c06a88774e0eb1ae37273f0911c708fa4b5a6827f6cefd5",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -537,7 +537,7 @@
   ],
   "skills": [
     {
-      "group": "Programming and ML",
+      "group": "Programming Language",
       "items": [
         "Python",
         "PyTorch",
