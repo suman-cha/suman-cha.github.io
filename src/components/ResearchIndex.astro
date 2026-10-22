@@ -11,7 +11,9 @@ const { papers, compact = false } = Astro.props;
 const number = (index: number) => String(index + 1).padStart(2, '0');
 const isExternal = (href: string) => href.startsWith('http://') || href.startsWith('https://');
 const publicationLabel = (paper: ResearchPaper) =>
-  paper.status?.startsWith('Submitted to ') ? paper.status : paper.venue;
+  paper.status?.startsWith('Submitted to ') || paper.status?.startsWith('Accepted at ')
+    ? paper.status
+    : paper.venue;
 ---
 
 <ol class:list={['research-index', { 'is-compact': compact }]}>
