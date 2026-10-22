@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "36a034ad197b7bae776b970b7dc2a24ea8974c6ff98bddfd5d41aa285db5d514",
+  "sourceDigest": "378d6b96a3b24a1ccd726de59a592d10d723a355f8cc02c6131a230d7fd83310",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -67,12 +67,12 @@
   ],
   "experience": [
     {
-      "title": "AI Research Intern",
-      "unit": "User Modeling AI",
+      "title": "AI Applied Research Intern",
+      "unit": "User Modeling AI Team",
       "organization": "KRAFTON",
       "start": "June 2025",
       "end": "March 2026",
-      "summary": "Conducted applied machine learning research for user modeling."
+      "summary": "Developed MMR algorithms for PUBG MMR Renewal and real-time win probability prediction models for PUBG E-sports."
     },
     {
       "title": "Researcher",
