@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "78a36582708bda9f2a4fd73f690d7fc031f6ed52bcbc9a1f9afe0371e4cf24d7",
+  "sourceDigest": "a738f9004a2c3e8fd50ed183099307fc0ec04931c1eb9b843866b6a8a5f5a15c",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -490,14 +490,14 @@
     {
       "id": "jsm-2025-cond2st",
       "title": "General Frameworks for Conditional Two-Sample Testing",
-      "event": "JSM 2025",
+      "event": "Joint Statistical Meetings 2025",
       "year": 2025,
       "format": "Oral presentation"
     },
     {
       "id": "kdms-2024-contrastive",
       "title": "Contrastive Learning for Two-sample Tests",
-      "event": "KDMS 2024",
+      "event": "Korea Data Mining Society 2024",
       "year": 2024,
       "format": "Oral presentation"
     }
@@ -505,13 +505,13 @@
   "awards": [
     {
       "title": "Best Paper Award",
-      "event": "KDMS 2024",
+      "event": "Korea Data Mining Society 2024",
       "year": 2024,
       "relatedTalkId": "kdms-2024-contrastive"
     },
     {
       "title": "Excellence Award",
-      "event": "Yonsei Data Science Competition - KCB Project",
+      "event": "Yonsei Data Science Competition - Korea Credit Bureau Project",
       "year": 2022
     },
     {
