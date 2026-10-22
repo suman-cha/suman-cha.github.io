@@ -41,6 +41,7 @@ interface GeneratedResearchData {
 const data: GeneratedResearchData = generatedResearch;
 const expectedIds = [
   'fuse',
+  'semi-supervised-tabular',
   'battle-royale-win-probability',
   'mc-perm-power',
   'moms',
@@ -58,7 +59,7 @@ if (
   || expectedIds.some((id) => !publicationsById.has(id))
 ) {
   throw new Error(
-    `research.generated.json must contain exactly these five publications: ${expectedIds.join(', ')}`,
+    `research.generated.json must contain exactly these ${expectedIds.length} publications: ${expectedIds.join(', ')}`,
   );
 }
 

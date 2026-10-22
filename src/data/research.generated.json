@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "728669e9de6bc81369a2f4c7053367677615d5b7a7b7526485e97de15c7796aa",
+  "sourceDigest": "902d00603f9767b2860e3a67fb8f8831a5160979901b954ef29a6da98bfcb2b5",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -118,10 +118,10 @@
     {
       "id": "fuse",
       "order": 1,
-      "title": "FUSE: Feature-Wise Unified Specialization with Cross-Column Exchange for Mixed-Type Tabular Flow Matching",
+      "title": "TabFUSE: Feature-Wise Unified Specialization with Cross-Column Exchange for Mixed-Type Tabular Flow Matching",
       "year": 2027,
-      "venue": "AAAI Conference on Artificial Intelligence",
-      "status": "Submitted to AAAI 2027",
+      "venue": "AISTATS 2027",
+      "status": "Submitted to AISTATS 2027",
       "authors": [
         {
           "name": "Suman Cha",
@@ -164,8 +164,40 @@
       ]
     },
     {
-      "id": "battle-royale-win-probability",
+      "id": "semi-supervised-tabular",
       "order": 2,
+      "title": "Semi-Supervised Tabular Learning with Class-Specific Reconstruction and Reliable Pseudo-Label Selection",
+      "year": 2027,
+      "venue": "AISTATS 2027",
+      "status": "Submitted to AISTATS 2027",
+      "authors": [
+        {
+          "name": "Suman Cha",
+          "markers": [],
+          "isSelf": true
+        },
+        {
+          "name": "Ahyoung Lee",
+          "markers": [],
+          "isSelf": false
+        },
+        {
+          "name": "Hyunjoong Kim",
+          "markers": [],
+          "isSelf": false
+        }
+      ],
+      "authorNotes": [],
+      "links": [
+        {
+          "label": "OpenReview",
+          "href": "https://openreview.net/forum?id=6hiWc7pUwQ"
+        }
+      ]
+    },
+    {
+      "id": "battle-royale-win-probability",
+      "order": 3,
       "title": "Real-Time Win Probability Prediction in Battle Royale Games via Survival Analysis",
       "year": 2027,
       "venue": "KDD 2027 Applied Data Science Track",
@@ -234,7 +266,7 @@
     },
     {
       "id": "mc-perm-power",
-      "order": 3,
+      "order": 4,
       "title": "More Permutations Do Not Always Increase Power: Non-monotonicity in Monte Carlo Permutation Tests",
       "year": 2026,
       "venue": "Statistical Science",
@@ -284,7 +316,7 @@
     },
     {
       "id": "moms",
-      "order": 4,
+      "order": 5,
       "title": "Learning Majority-to-Minority Transformations with MMD and Triplet Loss for Imbalanced Classification",
       "year": 2026,
       "venue": "Information Sciences 123929 (2026)",
@@ -319,7 +351,7 @@
     },
     {
       "id": "cond2st",
-      "order": 5,
+      "order": 6,
       "title": "General Frameworks for Conditional Two-Sample Testing",
       "year": 2024,
       "venue": "Biometrika",
@@ -369,7 +401,7 @@
       "projects": [
         {
           "id": "fuse",
-          "name": "FUSE",
+          "name": "TabFUSE",
           "summary": "Reproducibility pipeline with SHA-256-verified data reconstruction and command-line workflows for training, reproduction, dependence studies, replay, and evaluation.",
           "repository": {
             "label": "GitHub",
