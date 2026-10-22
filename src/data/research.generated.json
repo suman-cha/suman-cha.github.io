@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "sourceDigest": "378d6b96a3b24a1ccd726de59a592d10d723a355f8cc02c6131a230d7fd83310",
+  "sourceDigest": "cfe19e1329fab17d2a4598aa9816fe7c31aeabdc75169799ed3f3fb4aa821712",
   "profile": {
     "name": "Suman Cha",
     "role": "Integrated M.S./Ph.D. Student in Statistics and Data Science",
@@ -80,15 +80,15 @@
       "organization": "Yonsei University",
       "start": "January 2025",
       "end": "December 2026",
-      "summary": "Developed and evaluated time-series forecasting models for wastewater treatment processes."
+      "summary": "Developed time-series forecasting models for wastewater treatment processes."
     },
     {
       "title": "Researcher",
-      "unit": "BRL Two-Sample Testing Project",
+      "unit": "Basic Research Lab (BRLab)",
       "organization": "Yonsei University",
       "start": "September 2022",
       "end": "February 2025",
-      "summary": "Conducted research on conditional two-sample testing."
+      "summary": "Conducted research on conditional two-sample testing and led biweekly seminars."
     }
   ],
   "teaching": [
