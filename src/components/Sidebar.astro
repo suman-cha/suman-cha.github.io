@@ -1,11 +1,20 @@
 ---
 import SocialLinks from './SocialLinks.astro';
+
+interface Props {
+  full?: boolean;
+}
+
+// The home page shows the whole profile and names its owner as the page h1.
+// Inner pages keep a short profile on narrow screens so their content starts sooner.
+const { full = false } = Astro.props;
+const Name = full ? 'h1' : 'p';
 ---
 
-<aside class="sidebar" aria-label="Profile">
+<aside class:list={['sidebar', { 'is-brief': !full }]} aria-label="Profile">
   <div class="sidebar-inner">
     <div class="identity">
-      <p class="name">Suman Cha</p>
+      <Name class="name">Suman Cha</Name>
       <p class="role">Integrated M.S./Ph.D. Student</p>
       <p class="affiliation">Statistics and Data Science<br />Yonsei University</p>
     </div>
@@ -46,8 +55,8 @@ import SocialLinks from './SocialLinks.astro';
   .name {
     color: var(--color-text);
     font-family: var(--font-display);
-    font-size: var(--text-lg);
-    font-weight: 700;
+    font-size: var(--text-xl);
+    font-weight: 600;
     letter-spacing: var(--tracking-display);
     line-height: var(--leading-tight);
   }
@@ -82,6 +91,17 @@ import SocialLinks from './SocialLinks.astro';
     font-family: var(--font-label);
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-label);
+  }
+
+  @media (max-width: 55.99rem) {
+    .is-brief .bio,
+    .is-brief .advisors {
+      display: none;
+    }
+
+    .is-brief .name {
+      font-size: var(--text-lg);
+    }
   }
 
   @media (min-width: 56rem) {

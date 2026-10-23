@@ -22,6 +22,9 @@
     height: 2.75rem;
     place-items: center;
     color: var(--color-text-soft);
+    transition:
+      color var(--dur-micro) ease,
+      transform var(--dur-micro) var(--ease-out);
   }
 
   .icon-sun {
@@ -48,6 +51,7 @@
 
   .theme-toggle:active {
     color: var(--color-accent-hover);
+    transform: scale(0.94);
   }
 </style>
 

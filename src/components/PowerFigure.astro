@@ -1,0 +1,97 @@
+---
+// Closed-form Bernoulli example from "More Permutations Do Not Always Increase Power"
+// (Figure 1, Case 2). Treated outcomes are Bernoulli(p1), controls are all zero, so the
+// observed statistic is S ~ Binomial(n, p1) and one random relabeling ties or exceeds it
+// with probability q(s) = C(2n - s, n - s) / C(2n, n). The Monte Carlo test rejects when
+// at most floor(alpha (B + 1)) - 1 of the B relabelings do so.
+const n = 25;
+const p1 = 0.16;
+const alpha = 0.05;
+const maxB = 150;
+
+const choose = (m: number, k: number) => {
+  let value = 1;
+  for (let i = 1; i <= k; i += 1) value = (value * (m - k + i)) / i;
+  return value;
+};
+
+const states = Array.from({ length: n + 1 }, (_, s) => ({
+  weight: choose(n, s) * p1 ** s * (1 - p1) ** (n - s),
+  q: choose(2 * n - s, n - s) / choose(2 * n, n),
+}));
+
+const binomialCdf = (k: number, size: number, prob: number) => {
+  if (prob >= 1) return k >= size ? 1 : 0;
+  let term = (1 - prob) ** size;
+  let total = 0;
+  for (let j = 0; j <= k; j += 1) {
+    total += term;
+    term *= ((size - j) / (j + 1)) * (prob / (1 - prob));
+  }
+  return total;
+};
+
+const monteCarloPower = (B: number) => {
+  const maxExceedances = Math.floor(alpha * (B + 1) + 1e-9) - 1;
+  if (maxExceedances < 0) return 0;
+  return states.reduce((sum, { weight, q }) => sum + weight * binomialCdf(maxExceedances, B, q), 0);
+};
+
+const exactPower = states.reduce((sum, { weight, q }) => sum + (q <= alpha ? weight : 0), 0);
+
+const width = 360;
+const height = 200;
+const pad = { top: 12, right: 10, bottom: 12, left: 10 };
+const yMax = 0.5;
+const x = (B: number) => pad.left + (B / maxB) * (width - pad.left - pad.right);
+const y = (power: number) => pad.top + (1 - power / yMax) * (height - pad.top - pad.bottom);
+
+const curve = Array.from({ length: maxB }, (_, i) => i + 1)
+  .map((B, i) => `${i === 0 ? 'M' : 'L'}${x(B).toFixed(1)},${y(monteCarloPower(B)).toFixed(1)}`)
+  .join(' ');
+const peaks = Array.from({ length: maxB }, (_, i) => i + 1)
+  .filter((B) => Number.isInteger(Math.round(alpha * (B + 1) * 1e9) / 1e9))
+  .map((B) => ({ cx: x(B), cy: y(monteCarloPower(B)) }));
+---
+
+<svg class="power-thumbnail" viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="power-title">
+  <title id="power-title">
+    Monte Carlo permutation power against the number of permutations B from 1 to {maxB}. Power is zero until
+    B = 19, then rises and falls in a sawtooth that peaks whenever (B + 1) times {alpha} is an integer, around
+    the exact-test power of {exactPower.toFixed(2)}.
+  </title>
+  <line class="axis" x1={pad.left} x2={width - pad.right} y1={y(0)} y2={y(0)} />
+  <line class="exact" x1={pad.left} x2={width - pad.right} y1={y(exactPower)} y2={y(exactPower)} />
+  <path class="curve" d={curve} />
+  {peaks.map(({ cx, cy }) => <circle cx={cx} cy={cy} r="4" />)}
+</svg>
+
+<style>
+  /* Hallmark · enrichment: hand-built SVG thumbnail computed at build time from the paper's closed form */
+  .power-thumbnail {
+    width: 100%;
+    height: 100%;
+  }
+
+  .axis {
+    stroke: var(--color-figure-rule);
+    stroke-width: 1.5;
+  }
+
+  .exact {
+    stroke: var(--color-figure-muted);
+    stroke-width: 2;
+    stroke-dasharray: 8 6;
+  }
+
+  .curve {
+    fill: none;
+    stroke: var(--color-figure-ink);
+    stroke-width: 3;
+    stroke-linejoin: round;
+  }
+
+  circle {
+    fill: var(--color-figure-ink);
+  }
+</style>

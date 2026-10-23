@@ -80,3 +80,8 @@ export const researchSourceDigest = data.sourceDigest;
 
 // Kept as a compatibility alias for any downstream import not yet migrated.
 export const scholarPapers = researchPapers;
+
+// Accepted and published work leads; submissions follow under their own heading.
+export const isUnderReview = (paper: ResearchPaper) => paper.status?.startsWith('Submitted to ') ?? false;
+export const publishedPapers = researchPapers.filter((paper) => !isUnderReview(paper));
+export const papersUnderReview = researchPapers.filter(isUnderReview);

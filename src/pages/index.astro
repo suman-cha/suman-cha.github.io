@@ -1,93 +1,74 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectIndex from '../components/ProjectIndex.astro';
 import ResearchIndex from '../components/ResearchIndex.astro';
-import { researchPapers } from '../data/papers';
-import { publicProjects } from '../data/projects';
+import { papersUnderReview, publishedPapers } from '../data/papers';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Suman Cha',
+  url: 'https://suman-cha.github.io',
+  email: 'mailto:oldrain123@yonsei.ac.kr',
+  jobTitle: 'Integrated M.S./Ph.D. Student',
+  affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Yonsei University',
+    department: 'Statistics and Data Science',
+  },
+  sameAs: [
+    'https://github.com/suman-cha',
+    'https://scholar.google.co.kr/citations?user=U9j8rScAAAAJ',
+  ],
+};
 ---
 
-<BaseLayout description="Research and public code by Suman Cha, an integrated M.S./Ph.D. student at Yonsei University.">
+<BaseLayout
+  description="Research and public code by Suman Cha, an integrated M.S./Ph.D. student at Yonsei University."
+  jsonLd={jsonLd}
+>
   <div class="home-index">
-    <section class="introduction" aria-labelledby="home-title">
-      <h1 id="home-title">Statistics, testing, and learning.</h1>
-      <p>
-        Research in statistical inference and testing, imbalanced classification,
-        mixed-type tabular generative modeling, and statistical machine learning.
-      </p>
-    </section>
-
-    <section class="index-section" aria-labelledby="research-heading">
+    <section class="index-section" aria-labelledby="published-heading">
       <header class="section-head">
-        <div>
-          <h2 id="research-heading">Research</h2>
-        </div>
+        <h2 id="published-heading">Publications</h2>
         <a href="/research">All research <span aria-hidden="true">→</span></a>
       </header>
-      <ResearchIndex papers={researchPapers} compact />
+      <ResearchIndex papers={publishedPapers} compact />
     </section>
 
-    <section class="index-section" aria-labelledby="projects-heading">
+    <section class="index-section" aria-labelledby="review-heading">
       <header class="section-head">
-        <div>
-          <h2 id="projects-heading">Projects</h2>
-          <p>Four public research codebases.</p>
-        </div>
-        <a href="/projects">All projects <span aria-hidden="true">→</span></a>
+        <h2 id="review-heading">Under review</h2>
       </header>
-      <ProjectIndex projects={publicProjects} compact />
+      <ResearchIndex papers={papersUnderReview} compact />
     </section>
   </div>
 </BaseLayout>
 
 <style>
-  /* Hallmark · macrostructure: Index-First · home: introduction + two complete indexes */
+  /* Hallmark · macrostructure: Long Document · home: the publication record, venue first */
   .home-index {
     display: grid;
-    gap: var(--space-3xl);
-  }
-
-  .introduction {
-    display: grid;
-    gap: var(--space-md);
-    padding-bottom: var(--space-xl);
-    border-bottom: var(--rule-hair) solid var(--color-border);
-    container-type: inline-size;
-  }
-
-  .introduction h1 {
-    max-width: none;
-    font-size: clamp(1rem, 5.75cqi, 3.05rem);
-    white-space: nowrap;
-  }
-
-  .introduction p {
-    max-width: 66ch;
-    font-size: var(--text-md);
-    line-height: var(--leading-body);
+    gap: var(--space-2xl);
   }
 
   .index-section {
     display: grid;
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 
   .section-head {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-xs) var(--space-md);
   }
 
-  .section-head div {
-    display: grid;
-    gap: var(--space-2xs);
-  }
-
-  .section-head p {
-    font-size: var(--text-sm);
+  .section-head h2 {
+    font-size: var(--text-lg);
   }
 
   .section-head a {
-    justify-self: start;
     color: var(--color-accent);
     font-size: var(--text-sm);
     font-weight: 600;
@@ -101,17 +82,6 @@ import { publicProjects } from '../data/projects';
     .section-head a:hover {
       color: var(--color-accent-hover);
       text-decoration-color: currentColor;
-    }
-  }
-
-  @media (min-width: 40rem) {
-    .section-head {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-    }
-
-    .section-head a {
-      justify-self: end;
     }
   }
 </style>

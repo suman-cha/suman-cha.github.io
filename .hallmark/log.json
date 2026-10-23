@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-23",
+    "macrostructure": "Long Document",
+    "theme": "Almanac",
+    "enrichment": "per-paper figure thumbnails on /research (paper figures as WebP, mc-perm-power as build-time SVG)",
+    "nav": "N1 Wordmark + destination links",
+    "footer": "Ft2 Inline rule single line",
+    "brief": "Design review pass: publications first, serif display, per-paper thumbnails, a11y and meta fixes"
+  },
+  {
     "date": "2026-08-08",
     "macrostructure": "Index-First",
     "theme": "Almanac",

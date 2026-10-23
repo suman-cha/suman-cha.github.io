@@ -1,4 +1,8 @@
 ---
+import '@fontsource-variable/source-sans-3';
+import '@fontsource-variable/source-serif-4';
+import sansFont from '@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2?url';
+import serifFont from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -7,13 +11,17 @@ import Sidebar from '../components/Sidebar.astro';
 interface Props {
   title?: string;
   description?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
 const {
   title,
   description = 'Research and open-source projects by Suman Cha, a statistics and data science researcher at Yonsei University.',
+  jsonLd,
 } = Astro.props;
 const fullTitle = title ? `${title} — Suman Cha` : 'Suman Cha';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
 ---
 
 <!doctype html>
@@ -23,18 +31,24 @@ const fullTitle = title ? `${title} — Suman Cha` : 'Suman Cha';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#f5f8fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap"
-    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href={sansFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifFont} as="font" type="font/woff2" crossorigin />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
     <title>{fullTitle}</title>
 
@@ -53,10 +67,11 @@ const fullTitle = title ? `${title} — Suman Cha` : 'Suman Cha';
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <Header />
-    <main class="site-main">
+    <main class="site-main" id="main">
       <div class="layout-shell">
-        <Sidebar />
+        <Sidebar full={Astro.url.pathname === '/'} />
         <div class="content">
           <slot />
         </div>
@@ -67,7 +82,7 @@ const fullTitle = title ? `${title} — Suman Cha` : 'Suman Cha';
 </html>
 
 <style is:global>
-  /* Hallmark · macrostructure: Index-First · shell: asymmetric profile/content */
+  /* Hallmark · macrostructure: Long Document · shell: asymmetric profile/content */
   .site-main {
     min-height: calc(100dvh - var(--header-height));
     padding-block: var(--space-xl) var(--space-3xl);

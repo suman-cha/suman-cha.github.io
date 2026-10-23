@@ -2,9 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectIndex from '../components/ProjectIndex.astro';
 import { publicProjects } from '../data/projects';
+
+const description = `${publicProjects.length} public research software projects by Suman Cha.`;
 ---
 
-<BaseLayout title="Projects" description="Four public research software projects by Suman Cha.">
+<BaseLayout title="Projects" description={description}>
   <section class="projects-page" aria-labelledby="projects-title">
     <header class="page-head">
       <h1 id="projects-title">Projects</h1>
@@ -18,7 +20,7 @@ import { publicProjects } from '../data/projects';
 </BaseLayout>
 
 <style>
-  /* Hallmark · macrostructure: Index-First · page: four-project public-code ledger */
+  /* Hallmark · macrostructure: Long Document · page: public-code ledger */
   .projects-page {
     display: grid;
     gap: var(--space-2xl);

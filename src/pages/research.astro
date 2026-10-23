@@ -1,21 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResearchIndex from '../components/ResearchIndex.astro';
-import { researchPapers } from '../data/papers';
+import { papersUnderReview, publishedPapers, researchPapers } from '../data/papers';
+
+const description = `${researchPapers.length} papers and preprints by Suman Cha, with full author lists and public links.`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': researchPapers.map((paper) => ({
+    '@type': 'ScholarlyArticle',
+    '@id': `https://suman-cha.github.io/research#${paper.id}`,
+    headline: paper.title,
+    author: paper.authors.map((author) => ({ '@type': 'Person', name: author.name })),
+    datePublished: String(paper.year),
+    sameAs: paper.links.map((link) => link.href),
+  })),
+};
 ---
 
-<BaseLayout title="Research" description="Five papers and preprints by Suman Cha, with full author lists and public links.">
+<BaseLayout title="Research" description={description} jsonLd={jsonLd}>
   <section class="research-page" aria-labelledby="research-title">
     <header class="page-head">
       <h1 id="research-title">Research</h1>
     </header>
 
-    <ResearchIndex papers={researchPapers} />
+    <section class="paper-group" aria-labelledby="published-heading">
+      <h2 id="published-heading">Publications</h2>
+      <ResearchIndex papers={publishedPapers} headingLevel="h3" />
+    </section>
+
+    <section class="paper-group" aria-labelledby="review-heading">
+      <h2 id="review-heading">Under review</h2>
+      <ResearchIndex papers={papersUnderReview} headingLevel="h3" />
+    </section>
   </section>
 </BaseLayout>
 
 <style>
-  /* Hallmark · macrostructure: Index-First · page: five-paper research ledger */
+  /* Hallmark · macrostructure: Long Document · page: research ledger in two groups */
   .research-page {
     display: grid;
     gap: var(--space-2xl);
@@ -24,5 +45,14 @@ import { researchPapers } from '../data/papers';
   .page-head {
     padding-bottom: var(--space-xl);
     border-bottom: var(--rule-hair) solid var(--color-border);
+  }
+
+  .paper-group {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .paper-group h2 {
+    font-size: var(--text-lg);
   }
 </style>
